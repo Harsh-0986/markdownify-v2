@@ -1,8 +1,16 @@
-function App(): JSX.Element {
+import { Content, RootLayout, Sidebar, DraggableTopBar, ActionButtonsRow } from './components'
+
+const App = () => {
   return (
-    <div className="flex h-full items-center justify-center">
-      <span className="text-blue-500">Hello, world!</span>
-    </div>
+    <>
+      <DraggableTopBar />
+      <RootLayout>
+        <Sidebar className="p-2">
+          <ActionButtonsRow className="flex justify-between mt-1" />
+        </Sidebar>
+        <Content className="border-l bg-zinc-900/50 border-l-white/50">Content</Content>
+      </RootLayout>
+    </>
   )
 }
 
