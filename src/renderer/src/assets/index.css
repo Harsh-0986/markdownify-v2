@@ -12,7 +12,7 @@
     @apply h-full;
     @apply select-none;
     @apply bg-transparent;
-    @apply font-mono antialiased text-white;
+    @apply font-sans antialiased text-white;
     @apply overflow-hidden;
   }
 
@@ -22,5 +22,17 @@
 
   button {
     -webkit-app-region: no-drag;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-[#555] rounded-md;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
   }
 }
