@@ -1,11 +1,16 @@
-import { NoteInfo } from '@shared/models'
 import { ComponentProps } from 'react'
 import { NotePreview } from '@/components'
 import { twMerge } from 'tailwind-merge'
+import { useNotesLists } from '@/hooks/useNotesList'
 
-const mockNotes: NoteInfo[] = []
-export const NotePreviewList = ({ className, ...props }: ComponentProps<'ul'>) => {
-  if (mockNotes.length === 0) {
+export const NotePreviewList = ({
+  className,
+  onSelect,
+  ...props
+}: ComponentProps<'ul'> & { onSelect?: () => void }) => {
+  const { notes, selectedNoteIndex, handleNoteSelect } = useNotesLists({ onSelect })
+
+  if (notes.length === 0) {
     return (
       <ul className={twMerge('text-center pt-4', className)} {...props}>
         <span>Start by creating a note!</span>
@@ -14,9 +19,14 @@ export const NotePreviewList = ({ className, ...props }: ComponentProps<'ul'>) =
   }
 
   return (
-    <ul {...props}>
-      {mockNotes.map((note) => (
-        <NotePreview {...note} key={note.title + note.lastEditTime} />
+    <ul className={className} {...props}>
+      {notes.map((note, index) => (
+        <NotePreview
+          isActive={selectedNoteIndex === index}
+          key={note.title + note.lastEditTime}
+          onClick={handleNoteSelect(index)}
+          {...note}
+        />
       ))}
     </ul>
   )
