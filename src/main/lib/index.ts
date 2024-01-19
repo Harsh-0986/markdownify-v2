@@ -3,11 +3,27 @@ import { ensureDir, readFile, readdir, remove, writeFile } from 'fs-extra'
 import { NoteInfo } from '@shared/models'
 import { appDirectoryName, fileEncoding, welcomeNoteFilename } from '@shared/constants'
 import { stat } from 'fs-extra'
-import { CreateNote, DeleteNote, GetNotes, ReadNote, WriteNote } from '@shared/types'
-import { dialog } from 'electron'
+import {
+  CreateNote,
+  DeleteNote,
+  GetNotes,
+  ReadNote,
+  WriteNote,
+  GetOS,
+  CloseApp
+} from '@shared/types'
+import { app, dialog } from 'electron'
 import path from 'path'
 import { isEmpty } from 'lodash'
 import welcomeNoteFile from '../../../resources/WelcomeNote.md?asset'
+
+export const getOS: GetOS = () => {
+  return process.platform
+}
+
+export const closeApp: CloseApp = () => {
+  app.quit()
+}
 
 export const getRootDir = () => {
   return `${homedir()}/${appDirectoryName}`

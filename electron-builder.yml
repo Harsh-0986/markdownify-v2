@@ -1,5 +1,5 @@
 appId: com.harshshah.markdownify
-productName: markdownify-v2
+productName: Markdownify
 directories:
   buildResources: build
 files:
@@ -37,7 +37,8 @@ linux:
   category: Utility
 appImage:
   artifactName: ${name}-${version}.${ext}
-npmRebuild: false
+npmRebuild: true
+icon: ./resources/icon.png
 publish:
   provider: generic
   url: https://harshshah.codes

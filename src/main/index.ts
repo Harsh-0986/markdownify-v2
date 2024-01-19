@@ -2,8 +2,16 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import { createNote, deleteNote, getNotes, readNote, writeNote } from '@/lib'
-import { CreateNote, DeleteNote, GetNotes, ReadNote, WriteNote } from '@shared/types'
+import { closeApp, createNote, deleteNote, getNotes, getOS, readNote, writeNote } from '@/lib'
+import {
+  CloseApp,
+  CreateNote,
+  DeleteNote,
+  GetNotes,
+  GetOS,
+  ReadNote,
+  WriteNote
+} from '@shared/types'
 
 function createWindow(): void {
   // Create the browser window.
@@ -12,7 +20,7 @@ function createWindow(): void {
     height: 670,
     show: false,
     autoHideMenuBar: true,
-    ...(process.platform === 'linux' ? { icon } : {}),
+    ...(process.platform === 'linux' ? { icon } : { icon }),
     center: true,
     title: 'Markdownify Notes',
     frame: false,
@@ -64,7 +72,8 @@ app.whenReady().then(() => {
   ipcMain.handle('writeNote', (_, ...args: Parameters<WriteNote>) => writeNote(...args))
   ipcMain.handle('createNote', (_, ...args: Parameters<CreateNote>) => createNote(...args))
   ipcMain.handle('deleteNote', (_, ...args: Parameters<DeleteNote>) => deleteNote(...args))
-
+  ipcMain.handle('getOS', (_, ...args: Parameters<GetOS>) => getOS(...args))
+  ipcMain.handle('closeApp', (_, ...args: Parameters<CloseApp>) => closeApp(...args))
   createWindow()
 
   app.on('activate', function () {
