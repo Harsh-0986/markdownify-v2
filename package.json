@@ -1,6 +1,6 @@
 {
   "name": "markdownify-v2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Markodownify is a simple note-taking app that uses Markdown syntax to format your notes.",
   "main": "./out/main/index.js",
   "author": "harshshah.codes",

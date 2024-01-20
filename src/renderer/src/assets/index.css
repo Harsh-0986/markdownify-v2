@@ -13,7 +13,7 @@
     @apply select-none;
     /* @apply bg-transparent; */
     @apply bg-zinc-900/50;
-    @apply font-sans antialiased text-white;
+    @apply font-lato antialiased text-white;
     @apply overflow-hidden;
   }
 
